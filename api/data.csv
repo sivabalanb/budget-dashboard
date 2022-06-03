@@ -1,0 +1,66 @@
+Month,Account,Category,Merchant,Description,Amount
+2022-04-01,Chase,Shopping,SharkNinja,Vaccum Cleaner,116.1
+2022-04-01,Chase,Shopping,Amazon,Bulbs,13.48
+2022-04-01,Chase,Shopping,ManoMano,Kettle,9.97
+2022-04-01,Chase,Shopping,Ebay,Monitor,87.2
+2022-04-01,Chase,Shopping,TheNorthFace,Jacket,78.95
+2022-04-01,Chase,Groceries,Lidl,Grocery,54.68
+2022-04-01,Chase,Groceries,Tesco,Grocery,39.94
+2022-04-01,Chase,Groceries,Freshco,Grocery,15.63
+2022-04-01,Chase,Groceries,PFC Addiscombe,Grocery,7.77
+2022-04-01,Chase,Groceries,Waitrose,Grocery,6.85
+2022-04-01,Chase,Groceries,Tomato,Grocery,1.69
+2022-04-01,Chase,Groceries,Milk,Grocery,1.49
+2022-04-01,Chase,Holidays,Village Hotels,Manchester Hotel,70
+2022-04-01,Chase,Holidays,Trainline,Train,58.85
+2022-04-01,Chase,Bills,Lebara,Mobile,10
+2022-04-01,Chase,Bills,Sky,Broadband,30.5
+2022-04-01,Chase,Entertainment,Kew Garden,Kew Garden,15
+2022-04-01,Chase,Going Out,Spice Garden,Food,10.68
+2022-04-01,Chase,Shopping,Amazon,Umbrella,10.26
+2022-04-01,Monzo,Bills,Foxtons,Rent,1250
+2022-04-01,Monzo,Bills,Thames,Water,32
+2022-04-01,Monzo,Groceries,Grocery,Grocery,64.62
+2022-04-01,Monzo,Groceries,Lidl,Grocery,22.7
+2022-04-01,Monzo,Cash,ATM,ATM,80
+2022-04-01,Monzo,Going Out,Papa Johns,Pizza,5
+2022-04-01,Monzo,Shopping,Amazon,Shoe Stand,32.5
+2022-04-01,Monzo,Shopping,Argos,Monitor,114.94
+2022-04-01,Monzo,Transfer,Wise,India,200
+2022-04-01,Monzo,Transfer,Remitly,India,100
+2022-05-01,Chase,Shopping,Ebay,Xbox,161.85
+2022-05-01,Chase,Holidays,Staycity,Hotel in York,117
+2022-05-01,Chase,Groceries,Tesco,Grocery,80.65
+2022-05-01,Chase,Holidays,Trainline,Manchester Trip,66.05
+2022-05-01,Chase,Groceries,Morrisons,Grocery,46.09
+2022-05-01,Chase,Groceries,Lidl,Grocery,44.1
+2022-05-01,Chase,Holidays,Living Italy,Holidays,31.13
+2022-05-01,Chase,Bills,Sky,Broadband,30.5
+2022-05-01,Chase,Shopping,Uniqlo,Clothing,29.9
+2022-05-01,Chase,Holidays,Man City Tour,Attraction,25
+2022-05-01,Chase,Holidays,TFL,Train,24.7
+2022-05-01,Chase,Holidays,Shi Shang,Resturant,17.4
+2022-05-01,Chase,Holidays,Uber ,Travel,14.74
+2022-05-01,Chase,Holidays,Jorvik Viking Centre,Attraction,13.5
+2022-05-01,Chase,Holidays,Manchester,Online Tickets,12
+2022-05-01,Chase,Bills,Lebara,Mobile,10
+2022-05-01,Chase,Holidays,Macnchester Tram,Travel,10
+2022-05-01,Chase,Going Out,Kebab,Food,8.5
+2022-05-01,Chase,Going Out,Starbucks,Food,7.65
+2022-05-01,Chase,Groceries,Freshco,Grocery,7.61
+2022-05-01,Chase,Going Out,McD,Food,6.17
+2022-05-01,Chase,Holidays,Coop,Food,6
+2022-05-01,Chase,Holidays,Cineworld,Food,5.45
+2022-05-01,Chase,Holidays,FishnChips,Food,5
+2022-05-01,Chase,Groceries,PFC Addiscombe,Grocery,4.47
+2022-05-01,Chase,Holidays,Coffee,Food,3.75
+2022-05-01,Chase,Holidays,Coffee,Food,3.49
+2022-05-01,Chase,Holidays,Coffee,Food,3.2
+2022-05-01,Chase,Holidays,Stagecoach,Travel,2.6
+2022-05-01,Chase,Holidays,Subway,Food,2.58
+2022-05-01,Chase,Holidays,Ppoint Hyde,Food,2.25
+2022-05-01,Monzo,Bills,Thames,Water,32
+2022-05-01,Monzo,Bills,Scottish Power,Gas,122
+2022-05-01,Monzo,Bills,Scottish Power,Electricity,75
+2022-05-01,Monzo,Bills,Foxtons,Rent,1250
+2022-05-01,Monzo,Transfer,Wise,India,200
