@@ -12,11 +12,13 @@ import { Select } from '@chakra-ui/react';
 import { Flex, Spacer } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { SimpleGrid } from '@chakra-ui/react'
-
+import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 
 export default function Home() {
     const { colorMode, toggleColorMode } = useColorMode();
     const [month, setMonth] = useState([]);
+    const [category, setCategory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -26,7 +28,10 @@ export default function Home() {
             // .then((actualData) => setMonth(actualData[0]['month']))
             .then((actualData) => {
                 setMonth(actualData[0]['month'])
+                setCategory(actualData[0]['category'])
                 setError(null);
+                console.log("month", month)
+                console.log("category", category)
               })
             .catch((err) => {
                 console.log(err.message);
@@ -52,28 +57,27 @@ export default function Home() {
                     </Flex>
                 </Flex>
             </Box>
-            <SimpleGrid columns={3} spacing={10}>
-                <Box m={12}><Select placeholder='Select option'>
-                    {/* <option value='option1'>{month[0]}</option> */}
-                    {/* {fruits.map((fruit) => <option value={fruit.value}>{fruit.label}</option>)} */}
-                    {
-                        month.map((m) => <option key={m} value={m}>{m}</option>)
-                    }
-                    {/* <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option> */}
+            <SimpleGrid columns={2} spacing={10}>
+                <Box m={12}><Select placeholder='Select Month'>
+                    {month.map((m) => <option key={m} value={m}>{m}</option>)}
+                    
                 </Select></Box>
-                <Box m={12}><Select placeholder='Select option'>
+                <Box m={12}><Select placeholder='Select Category'>
+                {category.map((m) => <option key={m} value={m}>{m}</option>)}
+                </Select></Box>
+                {/* <Box m={12}><Select placeholder='Select option'>
                     <option value='option1'>Option 1</option>
                     <option value='option2'>Option 2</option>
                     <option value='option3'>Option 3</option>
-                </Select></Box>
-                <Box m={12}><Select placeholder='Select option'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
-                </Select></Box>
+                </Select></Box> */}
 
             </SimpleGrid>
+            <div style={{ height: 400 }}>
+                <Text>Chart</Text>
+            <BarChart/>
+            <PieChart/>
+            <Text>End Chart</Text>
+            </div>
         </>
     );
 }
