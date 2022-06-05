@@ -21,10 +21,16 @@ def default_dashboard():
     cur.execute(f"select month(month), account, category, merchant, description, spent from budget_dashboard.data;")
     result = cur.fetchall()
     json_data = []
+    bar_chart_data = []
     # month = category = merchant = set()
     month  = set()
     category  = set()
     # Month,Account,Category,Merchant,Description,Amount
+    '''     {
+              "merchant": "SharkNinja",
+              "amount": 116,
+            },
+    '''
     for data in result:
         json_data.append({
 			'month':data[0],
@@ -34,6 +40,11 @@ def default_dashboard():
             'description':data[4],
 			'amount': data[5],
 			})
+        bar_chart_data.append({
+            'merchant': data[3],
+            'amount': data[5],
+            'category':data[2]
+        })
         month.add(data[0])
         category.add(data[2])
         # merchant.add(data[3])
@@ -41,28 +52,11 @@ def default_dashboard():
     # for m in month:
     #     print("month is", m)
     #     print("month name", calendar.month_name(m))
-    print(f"month {month} category {category}")
+    
     # final_data = [{"month": month, "category": category, "merchant": merchant, "data": json_data}]
-    final_data = [{"month": month, "category": list(category), "data": json_data}]
+    final_data = [{"month": month, "category": list(category), "data": json_data, "bar_chart_data" : list(bar_chart_data)}]
     return jsonify(final_data)
 
-@app.route('/chart', methods=['POST'])
-def chart():
-	asin = request.json
-	print("Asin requested from React", asin)
-	cur = mysql.connection.cursor()
-	cur.execute(f"select  FROM_UNIXTIME(date_recorded), FLOOR(price) from amazon_202005 where asin = '{asin}'")
-	result = cur.fetchall()
-	json_data = []
-
-	for data in result:
-		json_data.append({
-			'x':data[0],
-			'y': data[1]
-			})
-
-	final_data = [{ "id":"Price History", "color": "hsl(116, 70%, 50%)", "data": json_data}]
-	return jsonify(final_data)
 
 app.run()
 

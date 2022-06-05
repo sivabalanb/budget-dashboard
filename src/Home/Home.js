@@ -12,13 +12,14 @@ import { Select } from '@chakra-ui/react';
 import { Flex, Spacer } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { SimpleGrid } from '@chakra-ui/react'
-import BarChart from "./BarChart";
-import PieChart from "./PieChart";
+import MyResponsiveBar from "../MyResponsiveBar/MyResponsiveBar";
+import MyResponsivePie from '../MyResponsivePie/MyResponsivePie';
 
 export default function Home() {
     const { colorMode, toggleColorMode } = useColorMode();
     const [month, setMonth] = useState([]);
     const [category, setCategory] = useState([]);
+    const [barChartData, setBarChartData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -29,14 +30,17 @@ export default function Home() {
             .then((actualData) => {
                 setMonth(actualData[0]['month'])
                 setCategory(actualData[0]['category'])
+                setBarChartData(actualData[0]['bar_chart_data'])
                 setError(null);
                 console.log("month", month)
                 console.log("category", category)
-              })
+                console.log("barChartData", actualData[0]['bar_chart_data'])
+                setLoading(false)
+            })
             .catch((err) => {
                 console.log(err.message);
             });
-    }, []);
+    }, [loading]);
 
 
     return (
@@ -60,10 +64,10 @@ export default function Home() {
             <SimpleGrid columns={2} spacing={10}>
                 <Box m={12}><Select placeholder='Select Month'>
                     {month.map((m) => <option key={m} value={m}>{m}</option>)}
-                    
+
                 </Select></Box>
                 <Box m={12}><Select placeholder='Select Category'>
-                {category.map((m) => <option key={m} value={m}>{m}</option>)}
+                    {category.map((m) => <option key={m} value={m}>{m}</option>)}
                 </Select></Box>
                 {/* <Box m={12}><Select placeholder='Select option'>
                     <option value='option1'>Option 1</option>
@@ -72,12 +76,12 @@ export default function Home() {
                 </Select></Box> */}
 
             </SimpleGrid>
-            <div style={{ height: 400 }}>
-                <Text>Chart</Text>
-            <BarChart/>
-            <PieChart/>
-            <Text>End Chart</Text>
-            </div>
+            <SimpleGrid columns={2} spacing={10}>
+                <Box m={12} height={600}><MyResponsiveBar data={barChartData}/></Box>
+                <Box m={12} height={600}><MyResponsivePie /></Box>
+            </SimpleGrid>
+
+
         </>
     );
 }

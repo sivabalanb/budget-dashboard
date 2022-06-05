@@ -1,32 +1,107 @@
 [
-    {
-      "id": "scala",
-      "label": "scala",
-      "value": 589,
-      "color": "hsl(254, 70%, 50%)"
-    },
-    {
-      "id": "haskell",
-      "label": "haskell",
-      "value": 283,
-      "color": "hsl(356, 70%, 50%)"
-    },
-    {
-      "id": "javascript",
-      "label": "javascript",
-      "value": 231,
-      "color": "hsl(326, 70%, 50%)"
-    },
-    {
-      "id": "rust",
-      "label": "rust",
-      "value": 432,
-      "color": "hsl(18, 70%, 50%)"
-    },
-    {
-      "id": "css",
-      "label": "css",
-      "value": 393,
-      "color": "hsl(74, 70%, 50%)"
-    }
-  ]
+  {
+    "country": "AD",
+    "hot dog": 150,
+    "hot dogColor": "hsl(200, 70%, 50%)",
+    "burger": 15,
+    "burgerColor": "hsl(299, 70%, 50%)",
+    "sandwich": 80,
+    "sandwichColor": "hsl(288, 70%, 50%)",
+    "kebab": 157,
+    "kebabColor": "hsl(339, 70%, 50%)",
+    "fries": 102,
+    "friesColor": "hsl(102, 70%, 50%)",
+    "donut": 25,
+    "donutColor": "hsl(147, 70%, 50%)"
+  },
+  {
+    "country": "AE",
+    "hot dog": 144,
+    "hot dogColor": "hsl(195, 70%, 50%)",
+    "burger": 46,
+    "burgerColor": "hsl(213, 70%, 50%)",
+    "sandwich": 152,
+    "sandwichColor": "hsl(35, 70%, 50%)",
+    "kebab": 156,
+    "kebabColor": "hsl(24, 70%, 50%)",
+    "fries": 164,
+    "friesColor": "hsl(78, 70%, 50%)",
+    "donut": 32,
+    "donutColor": "hsl(160, 70%, 50%)"
+  },
+  {
+    "country": "AF",
+    "hot dog": 35,
+    "hot dogColor": "hsl(160, 70%, 50%)",
+    "burger": 48,
+    "burgerColor": "hsl(254, 70%, 50%)",
+    "sandwich": 148,
+    "sandwichColor": "hsl(283, 70%, 50%)",
+    "kebab": 88,
+    "kebabColor": "hsl(48, 70%, 50%)",
+    "fries": 33,
+    "friesColor": "hsl(261, 70%, 50%)",
+    "donut": 62,
+    "donutColor": "hsl(286, 70%, 50%)"
+  },
+  {
+    "country": "AG",
+    "hot dog": 139,
+    "hot dogColor": "hsl(212, 70%, 50%)",
+    "burger": 200,
+    "burgerColor": "hsl(45, 70%, 50%)",
+    "sandwich": 41,
+    "sandwichColor": "hsl(167, 70%, 50%)",
+    "kebab": 145,
+    "kebabColor": "hsl(3, 70%, 50%)",
+    "fries": 13,
+    "friesColor": "hsl(15, 70%, 50%)",
+    "donut": 168,
+    "donutColor": "hsl(85, 70%, 50%)"
+  },
+  {
+    "country": "AI",
+    "hot dog": 179,
+    "hot dogColor": "hsl(258, 70%, 50%)",
+    "burger": 67,
+    "burgerColor": "hsl(2, 70%, 50%)",
+    "sandwich": 72,
+    "sandwichColor": "hsl(123, 70%, 50%)",
+    "kebab": 62,
+    "kebabColor": "hsl(268, 70%, 50%)",
+    "fries": 150,
+    "friesColor": "hsl(107, 70%, 50%)",
+    "donut": 16,
+    "donutColor": "hsl(146, 70%, 50%)"
+  },
+  {
+    "country": "AL",
+    "hot dog": 130,
+    "hot dogColor": "hsl(52, 70%, 50%)",
+    "burger": 55,
+    "burgerColor": "hsl(194, 70%, 50%)",
+    "sandwich": 109,
+    "sandwichColor": "hsl(242, 70%, 50%)",
+    "kebab": 155,
+    "kebabColor": "hsl(128, 70%, 50%)",
+    "fries": 155,
+    "friesColor": "hsl(329, 70%, 50%)",
+    "donut": 141,
+    "donutColor": "hsl(157, 70%, 50%)"
+  },
+  {
+    "country": "AM",
+    "hot dog": 191,
+    "hot dogColor": "hsl(124, 70%, 50%)",
+    "burger": 147,
+    "burgerColor": "hsl(167, 70%, 50%)",
+    "sandwich": 29,
+    "sandwichColor": "hsl(187, 70%, 50%)",
+    "kebab": 187,
+    "kebabColor": "hsl(66, 70%, 50%)",
+    "fries": 91,
+    "friesColor": "hsl(202, 70%, 50%)",
+    "donut": 59,
+    "donutColor": "hsl(151, 70%, 50%)"
+  }
+]

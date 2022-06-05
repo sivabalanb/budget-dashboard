@@ -1,23 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
-import { render } from "react-dom";
 import { RadialChart } from "react-vis";
 
-const useWindowSize = () => {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-};
-
-function PieChart (){
-  const [width, height] = useWindowSize();
-
+function PieChart() {
   return (
     <RadialChart
       getLabel={d => d.label}
@@ -30,8 +13,8 @@ function PieChart (){
       ]}
       labelsRadiusMultiplier={1.6}
       labelsStyle={{ fontSize: 16, fill: "#222" }}
-      width={width}
-      height={height}
+      width={1000}
+      height={600}
     />
   );
 };
