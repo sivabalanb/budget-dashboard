@@ -1,44 +1,21 @@
 import { ResponsivePie } from '@nivo/pie'
+import { useState, useEffect } from "react";
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsivePie = ({ data /* see data tab */ }) => (
+export default function MyResponsivePie (data) {
+
+    useEffect(() => {
+        console.log("pie chart data", data.data)
+        // console.log("barchart", data.data, typeof(data.data), typeof(data.data[0]['merchant']), typeof(data.data[0]['amount']))
+        // console.log("d", d, typeof(d), typeof(d[0]['merchant']), typeof(d[0]['amount']))
+    }, []);
+    return (
     <ResponsivePie
-        data={[
-            {
-              "id": "erlang",
-              "label": "erlang",
-              "value": 431,
-              "color": "hsl(154, 70%, 50%)"
-            },
-            {
-              "id": "ruby",
-              "label": "ruby",
-              "value": 11,
-              "color": "hsl(105, 70%, 50%)"
-            },
-            {
-              "id": "php",
-              "label": "php",
-              "value": 48,
-              "color": "hsl(220, 70%, 50%)"
-            },
-            {
-              "id": "go",
-              "label": "go",
-              "value": 180,
-              "color": "hsl(74, 70%, 50%)"
-            },
-            {
-              "id": "elixir",
-              "label": "elixir",
-              "value": 449,
-              "color": "hsl(112, 70%, 50%)"
-            }
-          ]}
+        data={data.data}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={0.7}
@@ -68,76 +45,7 @@ const MyResponsivePie = ({ data /* see data tab */ }) => (
                 ]
             ]
         }}
-        defs={[
-            {
-                id: 'dots',
-                type: 'patternDots',
-                background: 'inherit',
-                color: 'rgba(255, 255, 255, 0.3)',
-                size: 4,
-                padding: 1,
-                stagger: true
-            },
-            {
-                id: 'lines',
-                type: 'patternLines',
-                background: 'inherit',
-                color: 'rgba(255, 255, 255, 0.3)',
-                rotation: -45,
-                lineWidth: 6,
-                spacing: 10
-            }
-        ]}
-        fill={[
-            {
-                match: {
-                    id: 'ruby'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'c'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'go'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'python'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'scala'
-                },
-                id: 'lines'
-            },
-            {
-                match: {
-                    id: 'lisp'
-                },
-                id: 'lines'
-            },
-            {
-                match: {
-                    id: 'elixir'
-                },
-                id: 'lines'
-            },
-            {
-                match: {
-                    id: 'javascript'
-                },
-                id: 'lines'
-            }
-        ]}
+        
         legends={[
             {
                 anchor: 'bottom',
@@ -164,6 +72,6 @@ const MyResponsivePie = ({ data /* see data tab */ }) => (
             }
         ]}
     />
-)
-
-export default MyResponsivePie;
+    )
+    }
+// export default MyResponsivePie;

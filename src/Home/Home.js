@@ -12,16 +12,17 @@ import { Select } from '@chakra-ui/react';
 import { Flex, Spacer } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { SimpleGrid } from '@chakra-ui/react'
-import MyResponsiveBar from "../MyResponsiveBar/MyResponsiveBar";
 import MyResponsivePie from '../MyResponsivePie/MyResponsivePie';
 
 export default function Home() {
     const { colorMode, toggleColorMode } = useColorMode();
     const [month, setMonth] = useState([]);
     const [category, setCategory] = useState([]);
-    const [barChartData, setBarChartData] = useState([]);
+    const [pieChartDataMerchant, setPieChartDataMerchant] = useState([]);
+    const [pieChartDataCategory, setPieChartDataCategory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/home`)
@@ -30,11 +31,13 @@ export default function Home() {
             .then((actualData) => {
                 setMonth(actualData[0]['month'])
                 setCategory(actualData[0]['category'])
-                setBarChartData(actualData[0]['bar_chart_data'])
+                setPieChartDataMerchant(actualData[0]['pie_chart_data_merchant'])
+                setPieChartDataCategory(actualData[0]['pie_chart_data_category'])
                 setError(null);
                 console.log("month", month)
                 console.log("category", category)
-                console.log("barChartData", actualData[0]['bar_chart_data'])
+                console.log("pie_chart_data_merchant", actualData[0]['pie_chart_data_merchant'])
+                console.log("pie_chart_data_category", actualData[0]['pie_chart_data_category'])
                 setLoading(false)
             })
             .catch((err) => {
@@ -77,8 +80,8 @@ export default function Home() {
 
             </SimpleGrid>
             <SimpleGrid columns={2} spacing={10}>
-                <Box m={12} height={600}><MyResponsiveBar data={barChartData}/></Box>
-                <Box m={12} height={600}><MyResponsivePie /></Box>
+                <Box m={12} height={600}><MyResponsivePie data={pieChartDataMerchant} /></Box>
+                <Box m={12} height={600}><MyResponsivePie data={pieChartDataCategory}/></Box>
             </SimpleGrid>
 
 
