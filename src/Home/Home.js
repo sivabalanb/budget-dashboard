@@ -22,29 +22,84 @@ export default function Home() {
     const [pieChartDataCategory, setPieChartDataCategory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [params, setParams] = useState({});
+    const [selectedMonth, setSelectedMonth] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState([]);
 
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:5000/home`)
+
+        const parsedParams = { "month": selectedMonth, "category": selectedCategory }
+        if (Object.keys(selectedMonth).length >= 1) {
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                mode: 'cors',
+                body: JSON.stringify({ 'month': selectedMonth, 'category': selectedCategory })
+            };
+            fetch('http://127.0.0.1:5000/home', requestOptions)
+                .then((response) => response.json())
+                .then((actualData) => {
+                    setPieChartDataMerchant(actualData[0]['pie_chart_data_merchant'])
+                    setPieChartDataCategory(actualData[0]['pie_chart_data_category'])
+                    console.log("pie_chart_data_merchant", actualData[0]['pie_chart_data_merchant'])
+                    console.log("pie_chart_data_category", actualData[0]['pie_chart_data_category'])
+                    setLoading(false)
+                    setError(null)
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+
+        }
+        else {
+            fetch(`http://127.0.0.1:5000/default`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                mode: 'cors',
+
+            })
+                .then((response) => response.json())
+                // .then((actualData) => setMonth(actualData[0]['month']))
+                .then((actualData) => {
+                    setMonth(actualData[0]['month'])
+                    setCategory(actualData[0]['category'])
+                    setError(null);
+                    console.log("month", month)
+                    console.log("category", category)
+                    setLoading(false)
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+            console.log("selectedMonth", selectedMonth, selectedCategory)
+        }
+        console.log("selectedMonth", selectedMonth);
+        console.log("length of selectedMonth", Object.keys(selectedMonth).length)
+    }, [selectedMonth, selectedCategory, pieChartDataMerchant]);
+
+    function resetf(e){
+        console.log("reset button clicked")
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            mode: 'cors',
+        };
+        fetch('http://127.0.0.1:5000/home', requestOptions)
             .then((response) => response.json())
-            // .then((actualData) => setMonth(actualData[0]['month']))
             .then((actualData) => {
-                setMonth(actualData[0]['month'])
-                setCategory(actualData[0]['category'])
                 setPieChartDataMerchant(actualData[0]['pie_chart_data_merchant'])
                 setPieChartDataCategory(actualData[0]['pie_chart_data_category'])
-                setError(null);
-                console.log("month", month)
-                console.log("category", category)
                 console.log("pie_chart_data_merchant", actualData[0]['pie_chart_data_merchant'])
                 console.log("pie_chart_data_category", actualData[0]['pie_chart_data_category'])
                 setLoading(false)
+                setError(null)
             })
             .catch((err) => {
                 console.log(err.message);
             });
-    }, [loading]);
-
+    }
 
     return (
         <>
@@ -65,23 +120,20 @@ export default function Home() {
                 </Flex>
             </Box>
             <SimpleGrid columns={2} spacing={10}>
-                <Box m={12}><Select placeholder='Select Month'>
+                <Box m={12}><Select onChange={(e) => setSelectedMonth(e.target.value)} placeholder='Select Month'>
                     {month.map((m) => <option key={m} value={m}>{m}</option>)}
 
                 </Select></Box>
-                <Box m={12}><Select placeholder='Select Category'>
+                <Box m={12}><Select onChange={(e) => setSelectedCategory(e.target.value)} placeholder='Select Category' >
                     {category.map((m) => <option key={m} value={m}>{m}</option>)}
                 </Select></Box>
-                {/* <Box m={12}><Select placeholder='Select option'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
-                </Select></Box> */}
+
 
             </SimpleGrid>
+            <Button colorScheme='teal' size='md' sx={{ margin: "4" }} onClick={resetf}> Reset </Button>
             <SimpleGrid columns={2} spacing={10}>
                 <Box m={12} height={600}><MyResponsivePie data={pieChartDataMerchant} /></Box>
-                <Box m={12} height={600}><MyResponsivePie data={pieChartDataCategory}/></Box>
+                <Box m={12} height={600}><MyResponsivePie data={pieChartDataCategory} /></Box>
             </SimpleGrid>
 
 
