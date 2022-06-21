@@ -16,6 +16,8 @@ export default function MyResponsivePie (data) {
     return (
     <ResponsivePie
         data={data.data}
+        valueFormat=".0f"
+        colors={{"scheme":data.colorScheme}}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={0.7}

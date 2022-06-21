@@ -77,7 +77,7 @@ export default function Home() {
         }
         console.log("selectedMonth", selectedMonth);
         console.log("length of selectedMonth", Object.keys(selectedMonth).length)
-    }, [selectedMonth, selectedCategory, pieChartDataMerchant]);
+    }, [selectedMonth, selectedCategory]);
 
     function resetf(e){
         console.log("reset button clicked")
@@ -119,7 +119,8 @@ export default function Home() {
                     </Flex>
                 </Flex>
             </Box>
-            <SimpleGrid columns={2} spacing={10}>
+            <Flex columns={3} >
+            <Box m={12}></Box><Box m={12}></Box><Box m={12}></Box><Box m={12}></Box><Box m={12}></Box><Box m={12}></Box>
                 <Box m={12}><Select onChange={(e) => setSelectedMonth(e.target.value)} placeholder='Select Month'>
                     {month.map((m) => <option key={m} value={m}>{m}</option>)}
 
@@ -127,13 +128,14 @@ export default function Home() {
                 <Box m={12}><Select onChange={(e) => setSelectedCategory(e.target.value)} placeholder='Select Category' >
                     {category.map((m) => <option key={m} value={m}>{m}</option>)}
                 </Select></Box>
-
-
-            </SimpleGrid>
-            <Button colorScheme='teal' size='md' sx={{ margin: "4" }} onClick={resetf}> Reset </Button>
+                <Box m={8}>
+                <Button colorScheme='teal' size='md' sx={{ margin: "4" }} onClick={resetf}> Reset </Button>
+                </Box>
+            </Flex>
+            
             <SimpleGrid columns={2} spacing={10}>
-                <Box m={12} height={600}><MyResponsivePie data={pieChartDataMerchant} /></Box>
-                <Box m={12} height={600}><MyResponsivePie data={pieChartDataCategory} /></Box>
+                <Box m={12} height={600}><MyResponsivePie data={pieChartDataMerchant} colorScheme="nivo"/></Box>
+                <Box m={12} height={600}><MyResponsivePie data={pieChartDataCategory} colorScheme="paired"/></Box>
             </SimpleGrid>
 
 

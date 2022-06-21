@@ -43,7 +43,7 @@ def default_dashboard():
         for data in result_category:
             pie_chart_data_category.append({
                 'id': data[0],
-                'label': data[1],
+                'label': data[0],
                 'value': data[1],
             })
         
