@@ -1,3 +1,3 @@
 # Budget Dashboard
 
-![image](https://user-images.githubusercontent.com/3611461/175010073-5047f9d1-863a-438f-9950-4c32404e742e.png)
+![image](https://user-images.githubusercontent.com/3611461/178109142-bbdd04a3-5560-4f26-938f-7ce40b1c5724.png)
