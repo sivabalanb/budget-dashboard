@@ -76,7 +76,7 @@ const Header = () => {
               }}
               className='details'>
               
-              <div className='mua'>TBD</div>
+              {/* <div className='mua'>TBD</div> */}
             </motion.div>
             <motion.div className='model'>
               <motion.span className='first' variants={firstName}>

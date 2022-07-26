@@ -176,11 +176,11 @@ main {
 .single {
   .container {
     .top-row {
-      height: 50vh;
+      height: 12vh;
       width: 100%;
       align-items: flex-end;
       .top {
-        padding-bottom: 40px;
+        padding-bottom: 5px;
         .details {
           display: flex;
           align-items: center;
@@ -202,11 +202,11 @@ main {
           span {
             display: inline-block;
             position: relative;
-            font-weight: 400;
-            font-size: 224px;
+            font-weight: 50;
+            font-size: 100px;
             font-family: "Maragsa";
             @media (max-width: 1440px) {
-              font-size: 128px;
+              font-size: 12px;
             }
           }
         }
