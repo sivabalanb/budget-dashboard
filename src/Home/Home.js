@@ -115,7 +115,7 @@ export default function Home() {
 
     return (
         <>
-            <Box h="70px" bgGradient='linear(to-r, teal.500, green.500)'
+            {/* <Box h="70px" bgGradient='linear(to-r, teal.500, green.500)'
                 _hover={{
                     bgGradient: 'linear(to-r, red.500, yellow.500)',
                 }} px={12}>
@@ -130,7 +130,7 @@ export default function Home() {
                         </Stack>
                     </Flex>
                 </Flex>
-            </Box>
+            </Box> */}
             <Center>
             <Flex columns={3} >
                 <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedMonth(e.target.value)} placeholder='Select Month'>
