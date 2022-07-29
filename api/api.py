@@ -12,7 +12,7 @@ mysql.init_app(app)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'SIVA@1992n'
+app.config['MYSQL_PASSWORD'] = 'test'
 app.config['MYSQL_DB'] = 'budget_dashboard'
 
 @app.route('/home', methods=['GET', 'POST'])
@@ -73,7 +73,7 @@ def default_dashboard():
         else:
             where_clause = f"where DATE_FORMAT(month, '%b') in ('{received_month}') "
         
-        merchant_query = f"select DATE_FORMAT(month, '%b') AS month, account, category, merchant, description, sum(spent) from budget_dashboard.data "+where_clause+" group by merchant;"
+        merchant_query = f"select DATE_FORMAT(month, '%b') AS month, account, category, merchant, description, sum(spent) from budget_dashboard.data "+where_clause+" group by merchant order by 5 desc;"
         print("merchantquery", merchant_query)
         cur.execute(merchant_query)
         result_merchant = cur.fetchall()
