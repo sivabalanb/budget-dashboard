@@ -13,18 +13,22 @@ import { Flex, Spacer } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { SimpleGrid } from '@chakra-ui/react'
 import MyResponsivePie from '../MyResponsivePie/MyResponsivePie';
+import MyResponsiveLine from '../MyResponsiveLine/MyResponsiveLine';
 import { Center } from '@chakra-ui/react';
 
 export default function Home() {
     const { colorMode, toggleColorMode } = useColorMode();
     const [month, setMonth] = useState([]);
+    const [year, setYear] = useState([2022,2023]);
     const [category, setCategory] = useState([]);
     const [pieChartDataMerchant, setPieChartDataMerchant] = useState([]);
     const [pieChartDataCategory, setPieChartDataCategory] = useState([]);
+    const [lineChartDataCategory, setLineChartDataCategory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [params, setParams] = useState({});
     const [selectedMonth, setSelectedMonth] = useState([]);
+    const [selectedYear, setSelectedYear] = useState(2022);
     const [selectedCategory, setSelectedCategory] = useState([]);
     const [selectedTotal, setSelectedTotal] = useState([]);
 
@@ -70,6 +74,7 @@ export default function Home() {
                     setMonth(actualData[0]['month'])
                     setCategory(actualData[0]['category'])
                     setSelectedTotal(actualData[0]['total'])
+                    setLineChartDataCategory(actualData[0]['line_chart_data'])
                     setError(null);
                     console.log("month", month)
                     console.log("category", category)
@@ -133,6 +138,10 @@ export default function Home() {
             </Box> */}
             <Center>
             <Flex columns={3} >
+            <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedYear(e.target.value)} placeholder='Select Year'>
+                    {year.map((m) => <option key={m} value={m}>{m}</option>)}
+
+                </Select></Box>
                 <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedMonth(e.target.value)} placeholder='Select Month'>
                     {month.map((m) => <option key={m} value={m}>{m}</option>)}
 
@@ -161,6 +170,7 @@ export default function Home() {
                 <Box m={12} height={900} boxShadow='dark-lg' p='6' rounded='md' bg={colorMode === "light" ? "#ececec" : "#7a7a7a"}><MyResponsivePie data={pieChartDataMerchant} colorScheme="nivo" /></Box>
                 <Box m={12} height={900} boxShadow='dark-lg' p='6' rounded='md' bg={colorMode === "light" ? "#ececec" : "#7a7a7a"}><MyResponsivePie data={pieChartDataCategory} colorScheme="paired" /></Box>
             </SimpleGrid>
+            <Box m={12} height={900} boxShadow='dark-lg' p='6' rounded='md' bg={colorMode === "light" ? "#ececec" : "#7a7a7a"}><MyResponsiveLine data={lineChartDataCategory} colorScheme="paired" /></Box>
 
 
         </>
