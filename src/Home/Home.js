@@ -19,7 +19,7 @@ import { Center } from '@chakra-ui/react';
 export default function Home() {
     const { colorMode, toggleColorMode } = useColorMode();
     const [month, setMonth] = useState([]);
-    const [year, setYear] = useState([2022,2023]);
+    const [year, setYear] = useState([]);
     const [category, setCategory] = useState([]);
     const [pieChartDataMerchant, setPieChartDataMerchant] = useState([]);
     const [pieChartDataCategory, setPieChartDataCategory] = useState([]);
@@ -28,40 +28,14 @@ export default function Home() {
     const [error, setError] = useState(null);
     const [params, setParams] = useState({});
     const [selectedMonth, setSelectedMonth] = useState([]);
-    const [selectedYear, setSelectedYear] = useState(2022);
+    const [selectedYear, setSelectedYear] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState([]);
     const [selectedTotal, setSelectedTotal] = useState([]);
 
 
     useEffect(() => {
 
-        const parsedParams = { "month": selectedMonth, "category": selectedCategory }
-        if (Object.keys(selectedMonth).length >= 1) {
-
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-                mode: 'cors',
-                body: JSON.stringify({ 'month': selectedMonth, 'category': selectedCategory })
-            };
-            fetch('http://127.0.0.1:5000/home', requestOptions)
-                .then((response) => response.json())
-                .then((actualData) => {
-                    setPieChartDataMerchant(actualData[0]['pie_chart_data_merchant'])
-                    setPieChartDataCategory(actualData[0]['pie_chart_data_category'])
-                    setCategory(actualData[0]['category'])
-                    setSelectedTotal(actualData[0]['total'])
-                    console.log("pie_chart_data_merchant", actualData[0]['pie_chart_data_merchant'])
-                    console.log("pie_chart_data_category", actualData[0]['pie_chart_data_category'])
-                    setLoading(false)
-                    setError(null)
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
-
-        }
-        else {
+        if (Object.keys(selectedMonth).length === 0 & Object.keys(selectedYear).length === 0) {
             fetch(`http://127.0.0.1:5000/default`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
@@ -72,27 +46,55 @@ export default function Home() {
                 // .then((actualData) => setMonth(actualData[0]['month']))
                 .then((actualData) => {
                     setMonth(actualData[0]['month'])
+                    setYear(actualData[0]['year'])
                     setCategory(actualData[0]['category'])
                     setSelectedTotal(actualData[0]['total'])
                     setLineChartDataCategory(actualData[0]['line_chart_data'])
                     setError(null);
-                    console.log("month", month)
-                    console.log("category", category)
                     setLoading(false)
                 })
                 .catch((err) => {
                     console.log(err.message);
                 });
-            console.log("selectedMonth", selectedMonth, selectedCategory)
         }
-        console.log("selectedMonth", selectedMonth);
-        console.log("length of selectedMonth", Object.keys(selectedMonth).length)
-    }, [selectedMonth, selectedCategory]);
+
+        if (Object.keys(selectedMonth).length >= 1 || Object.keys(selectedYear).length >= 1) {
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                mode: 'cors',
+                body: JSON.stringify({ 'year': selectedYear, 'month': selectedMonth, 'category': selectedCategory, 'all_months': month, 'all_years': year, 'all_categories': category })
+            };
+            fetch('http://127.0.0.1:5000/home', requestOptions)
+                .then((response) => response.json())
+                .then((actualData) => {
+                    setPieChartDataMerchant(actualData[0]['pie_chart_data_merchant'])
+                    setPieChartDataCategory(actualData[0]['pie_chart_data_category'])
+                    setCategory(actualData[0]['category'])
+                    setSelectedTotal(actualData[0]['total'])
+                    setMonth(actualData[0]['month'])
+                    setLoading(false)
+                    setError(null)
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+
+        }
+
+
+
+    }, [selectedMonth, selectedCategory, selectedYear]);
 
 
 
     function resetf(e) {
-        console.log("reset button clicked")
+
+        setSelectedMonth([]);
+        setSelectedYear([]);
+        setSelectedCategory([]);
+
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
@@ -137,23 +139,23 @@ export default function Home() {
                 </Flex>
             </Box> */}
             <Center>
-            <Flex columns={3} >
-            <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedYear(e.target.value)} placeholder='Select Year'>
-                    {year.map((m) => <option key={m} value={m}>{m}</option>)}
+                <Flex columns={3} >
+                    <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedYear(e.target.value)} placeholder='Select Year' value={selectedYear}>
+                        {year.map((m) => <option key={m} value={m}>{m}</option>)}
 
-                </Select></Box>
-                <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedMonth(e.target.value)} placeholder='Select Month'>
-                    {month.map((m) => <option key={m} value={m}>{m}</option>)}
+                    </Select></Box>
+                    <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedMonth(e.target.value)} placeholder='Select Month' value={selectedMonth}>
+                        {month.map((m) => <option key={m} value={m}>{m}</option>)}
 
-                </Select></Box>
-                <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedCategory(e.target.value)} placeholder='Select Category' >
-                    {category.map((m) => <option key={m} value={m}>{m}</option>)}
-                </Select></Box>
-                <Box m={8} >
-                    <Button colorScheme='teal' size='md' sx={{ margin: "4" }} onClick={resetf}> Reset </Button>
-                </Box>
+                    </Select></Box>
+                    <Box m={12} boxShadow='xl' bgGradient="linear(to-t, teal.200, teal.500)"><Select size="lg" onChange={(e) => setSelectedCategory(e.target.value)} placeholder='Select Category' value={selectedCategory}>
+                        {category.map((m) => <option key={m} value={m}>{m}</option>)}
+                    </Select></Box>
+                    <Box m={8} >
+                        <Button colorScheme='teal' size='md' sx={{ margin: "4" }} onClick={resetf}> Reset </Button>
+                    </Box>
 
-            </Flex>
+                </Flex>
             </Center>
             <Center>
                 <Text fontSize='5xl'>Total Spent - £{selectedTotal}</Text>
